@@ -1,0 +1,39 @@
+# Available runners configured by board.cmake.
+runners:
+- stm32cubeprogrammer
+- openocd
+- pyocd
+
+# Default flash runner if --runner is not given.
+flash-runner: stm32cubeprogrammer
+
+# Default debug runner if --runner is not given.
+debug-runner: openocd
+
+# Common runner configuration values.
+config:
+  board_dir: /Users/johnnario/ZephyrProjects/FirstProject/zephyr/boards/st/nucleo_wb55rg
+  # Build outputs:
+  elf_file: zephyr.elf
+  hex_file: zephyr.hex
+  bin_file: zephyr.bin
+  # Host tools:
+  gdb: /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb
+  openocd: /opt/homebrew/bin/openocd
+  openocd_search:
+    - /Users/johnnario/zephyr-sdk-0.17.4/sysroots/arm64-pokysdk-linux/usr/share/openocd/scripts
+
+# Runner specific arguments
+args:
+  stm32cubeprogrammer:
+    - --port=swd
+    - --reset-mode=hw
+  openocd:
+    - --cmd-load
+    - flash write_image erase
+    - --cmd-verify
+    - verify_image
+    - --cmd-erase=stm32l4x mass_erase 0
+  pyocd:
+    - --dt-flash=y
+    - --target=stm32wb55rgvx

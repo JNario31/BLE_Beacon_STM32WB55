@@ -1,0 +1,2 @@
+# Load board Kconfig descriptions.
+osource "/Users/johnnario/ZephyrProjects/FirstProject/zephyr/boards/st/nucleo_wb55rg/Kconfig.nucleo_wb55rg"

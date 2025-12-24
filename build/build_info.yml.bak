@@ -1,0 +1,5 @@
+west:
+  command: /Users/johnnario/ZephyrProjects/FirstProject/venv/bin/west build -p always
+    -b nucleo_wb55rg -- -DDTC_OVERLAY_FILE=boards/nucleo_wb55rg.overlay
+  topdir: /Users/johnnario/ZephyrProjects/FirstProject
+  version: 1.5.0

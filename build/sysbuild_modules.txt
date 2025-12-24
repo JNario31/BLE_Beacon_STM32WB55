@@ -1,0 +1,1 @@
+"mcuboot":"/Users/johnnario/ZephyrProjects/FirstProject/bootloader/mcuboot":"/Users/johnnario/ZephyrProjects/FirstProject/bootloader/mcuboot/boot/zephyr/sysbuild"
