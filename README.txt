@@ -5,6 +5,10 @@ putting notes for me to remember and reference when I
 create new projects, and also to better understand how
 to navigate through this complicated system.
 
+The Nucleo-WB55RG uses a Dual-chip configuration, one
+running the application and host, the other with the
+controller and radio hardware.
+
 Devicetree Notes:
 The reason the i2c1 node does not require the keyword
 compatible is because it references an existing node in
@@ -43,6 +47,8 @@ Understanding i2c1 node:
     clocks tells Zephyr which clock domain feeds the peripheral
     status is originally disabled, thats why we enable it in our
     devicetree overlay.
+
+
 
 
 To build this project run: 
