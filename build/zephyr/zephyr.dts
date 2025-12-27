@@ -35,6 +35,8 @@
 		volt-sensor1 = &vbat;             /* in zephyr/boards/st/nucleo_wb55rg/nucleo_wb55rg.dts:78 */
 		mcuboot-led0 = &blue_led_1;       /* in zephyr/boards/st/nucleo_wb55rg/nucleo_wb55rg.dts:79 */
 		mcuboot-button0 = &user_button_1; /* in zephyr/boards/st/nucleo_wb55rg/nucleo_wb55rg.dts:80 */
+		my-i2c1 = &i2c1;                  /* in applications/ble_beacon/build/zephyr/boards/nucleo_wb55rg.overlay:3 */
+		temp-sensor = &bmp180;            /* in applications/ble_beacon/build/zephyr/boards/nucleo_wb55rg.overlay:4 */
 	};
 
 	/* node '/soc' defined in zephyr/dts/arm/armv7-m.dtsi:6 */
@@ -259,7 +261,7 @@
 				pinmux = < 0x304 >; /* in modules/hal/stm32/dts/st/wb/stm32wb55rgvx-pinctrl.dtsi:388 */
 				bias-pull-up;       /* in modules/hal/stm32/dts/st/wb/stm32wb55rgvx-pinctrl.dtsi:389 */
 				drive-open-drain;   /* in modules/hal/stm32/dts/st/wb/stm32wb55rgvx-pinctrl.dtsi:390 */
-				phandle = < 0x7 >;  /* in zephyr/boards/st/nucleo_wb55rg/nucleo_wb55rg.dts:128 */
+				phandle = < 0x7 >;  /* in applications/ble_beacon/build/zephyr/boards/nucleo_wb55rg.overlay:9 */
 			};
 
 			/* node '/soc/pin-controller@48000000/i2c3_scl_pc0' defined in modules/hal/stm32/dts/st/wb/stm32wb55rgvx-pinctrl.dtsi:411 */
@@ -275,7 +277,7 @@
 				pinmux = < 0x324 >; /* in modules/hal/stm32/dts/st/wb/stm32wb55rgvx-pinctrl.dtsi:432 */
 				bias-pull-up;       /* in modules/hal/stm32/dts/st/wb/stm32wb55rgvx-pinctrl.dtsi:433 */
 				drive-open-drain;   /* in modules/hal/stm32/dts/st/wb/stm32wb55rgvx-pinctrl.dtsi:434 */
-				phandle = < 0x8 >;  /* in zephyr/boards/st/nucleo_wb55rg/nucleo_wb55rg.dts:128 */
+				phandle = < 0x8 >;  /* in applications/ble_beacon/build/zephyr/boards/nucleo_wb55rg.overlay:9 */
 			};
 
 			/* node '/soc/pin-controller@48000000/i2c3_sda_pc1' defined in modules/hal/stm32/dts/st/wb/stm32wb55rgvx-pinctrl.dtsi:455 */
@@ -414,11 +416,19 @@
 			             < 0x1f 0x0 >;                   /* in zephyr/dts/arm/st/wb/stm32wb.dtsi:274 */
 			interrupt-names = "event",
 			                  "error";                   /* in zephyr/dts/arm/st/wb/stm32wb.dtsi:275 */
-			pinctrl-0 = < &i2c1_scl_pb8 &i2c1_sda_pb9 >; /* in zephyr/boards/st/nucleo_wb55rg/nucleo_wb55rg.dts:128 */
-			pinctrl-names = "default";                   /* in zephyr/boards/st/nucleo_wb55rg/nucleo_wb55rg.dts:129 */
-			status = "okay";                             /* in zephyr/boards/st/nucleo_wb55rg/nucleo_wb55rg.dts:130 */
-			clock-frequency = < 0x61a80 >;               /* in zephyr/boards/st/nucleo_wb55rg/nucleo_wb55rg.dts:131 */
+			pinctrl-0 = < &i2c1_scl_pb8 &i2c1_sda_pb9 >; /* in applications/ble_beacon/build/zephyr/boards/nucleo_wb55rg.overlay:9 */
+			pinctrl-names = "default";                   /* in applications/ble_beacon/build/zephyr/boards/nucleo_wb55rg.overlay:10 */
+			status = "okay";                             /* in applications/ble_beacon/build/zephyr/boards/nucleo_wb55rg.overlay:11 */
+			clock-frequency = < 0x61a80 >;               /* in applications/ble_beacon/build/zephyr/boards/nucleo_wb55rg.overlay:12 */
 			phandle = < 0x20 >;                          /* in zephyr/dts/arm/st/wb/stm32wb.dtsi:608 */
+
+			/* node '/soc/i2c@40005400/bmp180@77' defined in applications/ble_beacon/build/zephyr/boards/nucleo_wb55rg.overlay:14 */
+			bmp180: bmp180@77 {
+				compatible = "bosch,bmp180"; /* in applications/ble_beacon/build/zephyr/boards/nucleo_wb55rg.overlay:15 */
+				reg = < 0x77 >;              /* in applications/ble_beacon/build/zephyr/boards/nucleo_wb55rg.overlay:16 */
+				osr-press = < 0x1 >;         /* in applications/ble_beacon/build/zephyr/boards/nucleo_wb55rg.overlay:17 */
+				status = "okay";             /* in applications/ble_beacon/build/zephyr/boards/nucleo_wb55rg.overlay:18 */
+			};
 		};
 
 		/* node '/soc/i2c@40005c00' defined in zephyr/dts/arm/st/wb/stm32wb.dtsi:279 */

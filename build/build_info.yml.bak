@@ -1,5 +1,61 @@
+cmake:
+  application:
+    configuration-dir: '/Users/johnnario/ZephyrProjects/FirstProject/applications/ble_beacon'
+    source-dir: '/Users/johnnario/ZephyrProjects/FirstProject/applications/ble_beacon'
+  board:
+    name: 'nucleo_wb55rg'
+    path:
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/boards/st/nucleo_wb55rg'
+    qualifiers: 'stm32wb55xx'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/dts/bindings'
+    files:
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/boards/st/nucleo_wb55rg/nucleo_wb55rg.dts'
+     - 'boards/nucleo_wb55rg.overlay'
+    include-dirs:
+     - '/Users/johnnario/ZephyrProjects/FirstProject/modules/hal/ambiq/dts'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/modules/hal/atmel/include'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/modules/hal/bouffalolab/include'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/modules/hal/bouffalolab/include/zephyr'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/modules/hal/gigadevice/include'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/modules/hal/microchip/include'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/modules/hal/microchip/dts'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/modules/hal/nuvoton/dts'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/modules/hal/nxp/dts'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/modules/hal/stm32/dts'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/modules/hal/ti/dts'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/include'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/include/zephyr'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/dts/common'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/dts/vendor'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/dts/rx'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/dts/x86'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/dts/xtensa'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/dts/sparc'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/dts/riscv'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/dts/posix'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/dts/arm64'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/dts/arm'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/dts/arc'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/dts'
+    user-files:
+     - 'boards/nucleo_wb55rg.overlay'
+  kconfig:
+    files:
+     - '/Users/johnnario/ZephyrProjects/FirstProject/zephyr/boards/st/nucleo_wb55rg/nucleo_wb55rg_defconfig'
+     - '/Users/johnnario/ZephyrProjects/FirstProject/applications/ble_beacon/prj.conf'
+    user-files:
+     - '/Users/johnnario/ZephyrProjects/FirstProject/applications/ble_beacon/prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: '/Users/johnnario/zephyr-sdk-0.17.4'
+  zephyr:
+    version: '4.3.99'
+    zephyr-base: '/Users/johnnario/ZephyrProjects/FirstProject/zephyr'
+version: '0.1.0'
 west:
-  command: /Users/johnnario/ZephyrProjects/FirstProject/venv/bin/west build -p always
-    -b nucleo_wb55rg -- -DDTC_OVERLAY_FILE=boards/nucleo_wb55rg.overlay
-  topdir: /Users/johnnario/ZephyrProjects/FirstProject
-  version: 1.5.0
+  command: '/Users/johnnario/ZephyrProjects/FirstProject/venv/bin/west build -p always -b nucleo_wb55rg -- -DDTC_OVERLAY_FILE=boards/nucleo_wb55rg.overlay'
+  topdir: '/Users/johnnario/ZephyrProjects/FirstProject'
+  version: '1.5.0'

@@ -1,55 +1,85 @@
 #include <zephyr/kernel.h>
-#include <zephyr/bluetooth/bluetooth.h>
-#include <zephyr/bluetooth/hci.h>
+#include <zephyr/device.h>
+#include <zephyr/drivers/sensor.h>
 #include <zephyr/logging/log.h>
+#include <zephyr/drivers/sensor.h>
+#include "ble_service.h"
 
-LOG_MODULE_REGISTER(ble_beacon, LOG_LEVEL_INF);
+LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
-// Advertising Data
-static const struct bt_data ad[] = {
-    /**
-     * Declare elements of bt_data array
-     * */
-    BT_DATA_BYTES(BT_DATA_FLAGS, (BT_LE_AD_GENERAL | BT_LE_AD_NO_BREDR)),
-    BT_DATA(BT_DATA_NAME_COMPLETE, CONFIG_BT_DEVICE_NAME,
-            sizeof(CONFIG_BT_DEVICE_NAME) - 1),
-};
+#define SENSOR_UPDATE_INTERVAL_SEC 5
 
-int main(void){
-    int err;
+static const int32_t sleep_time_ms = 100;
 
-    LOG_INF("Starting BLE Beacon on STM32WB55RG...");
 
-    /**
-     * Enable Bluetooth Subsystem
-     */
-    err = bt_enable(NULL);
-    if (err) {
-        LOG_ERR("Bluetooth init failed (err %d)", err);
-        return err;
+int main(void)
+{
+    int ret;
+
+    LOG_INF("Starting BLE Beacon Application");
+
+    const struct device *bmp180_dev = DEVICE_DT_GET(DT_ALIAS(temp_sensor));
+    struct sensor_value temp, press;
+
+    if (!device_is_ready(bmp180_dev)) {
+        LOG_ERR("BMP180 device not ready");
+        return -ENODEV;
     }
+    LOG_INF("BMP180 sensor initialized successfully");
 
-    LOG_INF("Bluetooth initialized");
-
-    /**
-     * Start Advertising data
-     * @param BT_LE_ADV_CONN_NAME: Advertising parameters for connectable advertising with name
-     * @param ad: Advertising data
-     * @param ARRAY_SIZE(ad): Size of advertising data array
-     * @param NULL: No scan response data
-     * @param 0: Size of scan response data array
-     */
-    err = bt_le_adv_start(BT_LE_ADV_NCONN, ad, ARRAY_SIZE(ad), NULL, 0);
-    if (err) {
-        LOG_ERR("Advertising failed to start (err %d)", err);
-        return err;
+    /* Initialize BLE Service */
+    ret = ble_service_init();
+    if (ret) {
+        LOG_ERR("Failed to initialize BLE service (err %d)", ret);
+        return ret;
     }
-
-    LOG_INF("Advertising successfully started");
+    LOG_INF("BLE service initialized");
 
     while(1){
-        k_sleep(K_SECONDS(1));
-    }   
+        ret = sensor_sample_fetch(bmp180_dev);
+        if (ret < 0) {
+            LOG_ERR("Failed to fetch sample (%d)", ret);
+            k_msleep(sleep_time_ms);
+            continue;
+        }
 
+        /* Get temperature */
+        ret = sensor_channel_get(bmp180_dev, SENSOR_CHAN_AMBIENT_TEMP, &temp);
+        if (ret == 0) {
+            // Convert to float: val1 + (val2 / 1,000,000)
+            float temp_celsius = temp.val1 + (temp.val2 / 1000000.0f);
+            
+            LOG_INF("Temperature: %.2f C", temp_celsius);
+            
+            ret = ble_service_update_temperature(temp_celsius);
+            if (ret < 0) {
+                LOG_WRN("Failed to update BLE temperature");
+            }
+        } else {
+            LOG_ERR("Failed to get temperature channel (%d)", ret);
+        }
+
+        /* Get pressure */
+        ret = sensor_channel_get(bmp180_dev, SENSOR_CHAN_PRESS, &press);
+        if (ret == 0) {
+            // BMP180 returns pressure in kPa
+            // val1 = integer kPa, val2 = fractional kPa (in millionths)
+            // Convert to Pascals: kPa * 1000
+            
+            float pressure_kpa = press.val1 + (press.val2 / 1000000.0f);
+            uint32_t pressure_pa = (uint32_t)(pressure_kpa * 1000.0f);
+            
+            LOG_INF("Pressure: %u Pa (%.3f hPa)", pressure_pa, pressure_pa / 100.0f);
+            
+            ret = ble_service_update_pressure(pressure_pa);
+            if (ret < 0) {
+                LOG_WRN("Failed to update BLE pressure");
+            }
+        } else {
+            LOG_ERR("Failed to get pressure channel (%d)", ret);
+        }
+
+        k_msleep(SENSOR_UPDATE_INTERVAL_SEC * 1000);
+    }
     return 0;
 }

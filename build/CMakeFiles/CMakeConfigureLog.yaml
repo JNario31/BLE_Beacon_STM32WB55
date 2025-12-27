@@ -4353,3 +4353,66 @@ events:
         - "/Users/johnnario/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
       CMAKE_INSTALL_PREFIX: "/usr/local"
 ...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/Users/johnnario/ZephyrProjects/FirstProject/zephyr/cmake/compiler/gcc/target.cmake:8 (find_program)"
+      - "/Users/johnnario/ZephyrProjects/FirstProject/zephyr/cmake/modules/FindTargetTools.cmake:103 (include)"
+      - "/Users/johnnario/ZephyrProjects/FirstProject/zephyr/cmake/modules/kernel.cmake:25 (find_package)"
+      - "/Users/johnnario/ZephyrProjects/FirstProject/zephyr/cmake/modules/zephyr_default.cmake:138 (include)"
+      - "/Users/johnnario/ZephyrProjects/FirstProject/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:66 (include)"
+      - "/Users/johnnario/ZephyrProjects/FirstProject/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:97 (include_boilerplate)"
+      - "CMakeLists.txt:3 (find_package)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "/Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc"
+    candidate_directories:
+      - "/Users/johnnario/zephyr-sdk-0.17.4/"
+    found: "/Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc"
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "/Users/johnnario/zephyr-sdk-0.17.4/sysroots/arm64-pokysdk-linux/usr"
+      ENV{PATH}:
+        - "/Users/johnnario/ZephyrProjects/FirstProject/venv/bin"
+        - "/Applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/STM32CubeProgrammer.app/Contents/Resources/bin"
+        - "/Applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/STM32CubeProgrammer.app/Contents/MacOs/bin"
+        - "/Applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/STM32CubeProgrammer.app/Contents/MacOs/bin"
+        - "/opt/arm-gnu-toolchain-12.3.rel1-darwin-arm64-arm-none-eabi/bin"
+        - "/opt/homebrew/Cellar/pyenv-virtualenv/1.2.4/shims"
+        - "/Users/johnnario/.pyenv/shims"
+        - "/Users/johnnario/.pyenv/bin"
+        - "/opt/homebrew/opt/python/libexec/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/STM32CubeProgrammer.app/Contents/Resources/bin"
+        - "/Applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/STM32CubeProgrammer.app/Contents/MacOs/bin"
+        - "/opt/arm-gnu-toolchain-12.3.rel1-darwin-arm64-arm-none-eabi/bin"
+        - "/Users/johnnario/Library/pnpm"
+        - "/opt/homebrew/Cellar/pyenv-virtualenv/1.2.4/shims"
+        - "/Users/johnnario/.pyenv/bin"
+        - "/opt/homebrew/opt/python/libexec/bin"
+        - "/Users/johnnario/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+...

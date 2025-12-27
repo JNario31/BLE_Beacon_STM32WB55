@@ -375,6 +375,25 @@ rule C_STATIC_LIBRARY_LINKER__drivers__interrupt_controller_
 #############################################
 # Rule for compiling C files.
 
+rule C_COMPILER__drivers__adc_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ccache ${LAUNCHER}${CODE_CHECK}/Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__drivers__adc_
+  command = $PRE_LINK && ccache /opt/homebrew/bin/cmake -E rm -f $TARGET_FILE && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ranlib $TARGET_FILE && ccache /opt/homebrew/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
 rule C_COMPILER__drivers__bluetooth_unscanned_
   depfile = $DEP_FILE
   deps = gcc
@@ -470,6 +489,25 @@ rule C_STATIC_LIBRARY_LINKER__drivers__gpio_
 #############################################
 # Rule for compiling C files.
 
+rule C_COMPILER__drivers__i2c_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ccache ${LAUNCHER}${CODE_CHECK}/Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__drivers__i2c_
+  command = $PRE_LINK && ccache /opt/homebrew/bin/cmake -E rm -f $TARGET_FILE && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ranlib $TARGET_FILE && ccache /opt/homebrew/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
 rule C_COMPILER__drivers__pinctrl_unscanned_
   depfile = $DEP_FILE
   deps = gcc
@@ -500,6 +538,101 @@ rule C_COMPILER__drivers__reset_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__drivers__reset_
+  command = $PRE_LINK && ccache /opt/homebrew/bin/cmake -E rm -f $TARGET_FILE && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ranlib $TARGET_FILE && ccache /opt/homebrew/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__drivers__sensor_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ccache ${LAUNCHER}${CODE_CHECK}/Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__drivers__sensor_
+  command = $PRE_LINK && ccache /opt/homebrew/bin/cmake -E rm -f $TARGET_FILE && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ranlib $TARGET_FILE && ccache /opt/homebrew/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__drivers__sensor__bosch__bmp180_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ccache ${LAUNCHER}${CODE_CHECK}/Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__drivers__sensor__bosch__bmp180_
+  command = $PRE_LINK && ccache /opt/homebrew/bin/cmake -E rm -f $TARGET_FILE && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ranlib $TARGET_FILE && ccache /opt/homebrew/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__drivers__sensor__st__stm32_temp_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ccache ${LAUNCHER}${CODE_CHECK}/Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__drivers__sensor__st__stm32_temp_
+  command = $PRE_LINK && ccache /opt/homebrew/bin/cmake -E rm -f $TARGET_FILE && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ranlib $TARGET_FILE && ccache /opt/homebrew/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__drivers__sensor__st__stm32_vbat_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ccache ${LAUNCHER}${CODE_CHECK}/Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__drivers__sensor__st__stm32_vbat_
+  command = $PRE_LINK && ccache /opt/homebrew/bin/cmake -E rm -f $TARGET_FILE && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ranlib $TARGET_FILE && ccache /opt/homebrew/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__drivers__sensor__st__stm32_vref_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ccache ${LAUNCHER}${CODE_CHECK}/Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__drivers__sensor__st__stm32_vref_
   command = $PRE_LINK && ccache /opt/homebrew/bin/cmake -E rm -f $TARGET_FILE && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && ccache /Users/johnnario/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ranlib $TARGET_FILE && ccache /opt/homebrew/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT

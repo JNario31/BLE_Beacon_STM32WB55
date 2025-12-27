@@ -1,0 +1,20 @@
+/ {
+    aliases {
+        my-i2c1 = &i2c1;
+        temp-sensor = &bmp180; 
+    };
+};
+
+&i2c1 {
+	pinctrl-0 = <&i2c1_scl_pb8 &i2c1_sda_pb9>;
+	pinctrl-names = "default";
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_FAST>;
+
+    bmp180: bmp180@77 {
+		compatible = "bosch,bmp180";
+		reg = <0x77>;
+		osr-press = <1>;
+		status = "okay";
+	};
+};
